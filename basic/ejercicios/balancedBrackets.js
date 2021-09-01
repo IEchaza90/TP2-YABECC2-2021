@@ -13,10 +13,19 @@
  * @param {string} s 
  * @return {boolean}
  */
-const isValid = function(s){ 
-    
-};
 
+const isValid = function (s) {
+    let aux = -1;
+    while (s.length != 0) {
+      aux = s.length;
+      s = s.replace("()", "");
+      s = s.replace("[]", "");
+      s = s.replace("{}", "");
+      // puede reemplazar algo?
+      if (aux === s.length) return false;
+    }
+    return true;
+  };
 
 
 // TESTS

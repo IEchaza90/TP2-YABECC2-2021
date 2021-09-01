@@ -1,7 +1,7 @@
 /**
  * En el siguiente array de objetos (beers)
  * 1.- Desarrollar una function que retorne un array que incluya el precio segun el siguiente criterio
- *     a) Si el  grado alcoholico es < a 5.0 el precio es 300
+ *     a) Si el grado alcoholico es < a 5.0 el precio es 300
  *     b) Si el grado alcoholico es >= 5.0 el precio es 350
  *     c) La cerveza 'Purple Iris' esta de oferta y si precio es 320
  * 2.- Desarrolle una función que inserte la propiedad file_name a cada uno de los objetos, esta propiedad debe tener solo
@@ -19,3 +19,63 @@ const beers = [
     { name: 'Belgian Wit', abv: 5.4, label: 'https://s3.amazonaws.com/brewerydbapi/beer/3CvVQG/upload_xOMnlK-large.png', type: 'Wheat' },
     { name: 'Stolen Fruit', abv: 4.6, label: 'https://s3.amazonaws.com/brewerydbapi/beer/YGT30k/upload_uVCHP7-large.png', type: 'Wheat' },
   ];
+
+  //1)
+  function beerWithPrice(beers) {
+    return beers.map(b => ({
+      name: b.name,
+      abv: b.abv,
+      label: b.label,
+      type: b.type,
+      precio: generatePrice(b)
+    }))
+  }
+
+  function generatePrice(b) {
+    price = 0
+    if(b.name === 'Purple Iris') {
+      price = 320
+    }
+    else if(b.abv < 5.0 ) {
+      price = 300
+    }
+    else{
+      price = 350
+    }
+    return price
+  }
+
+  console.log(beerWithPrice(beers))
+
+  //2)
+
+  function beerWithFileName(beers) {
+    return beers.map(b => ({
+      name: b.name,
+      abv: b.abv,
+      label: b.label,
+      type: b.type,
+      file_name: generateFileName(b)
+    }))
+  }
+
+  function generateFileName(b) {
+    let fileName = b.label.split('/')
+    return fileName[6]
+  }
+
+  console.log(beerWithFileName(beers))
+
+  //3)
+
+  function compare( a, b ) {
+    if ( a.type < b.type ){
+      return -1
+    }
+    if ( a.type > b.type ){
+      return 1
+    }
+    return 0
+  }
+  
+  console.log(beers.sort(compare))
