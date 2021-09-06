@@ -1,7 +1,8 @@
 /**
  *  Una cárcel tiene varios prisioneros y varios caramelos para distribuirles.
     Su carcelero decide que la forma más justa de dividir las golosinas es sentar a los prisioneros alrededor de una mesa circular en sillas numeradas secuencialmente.
-    Se sacará un número de silla de un sombrero. Comenzando con el prisionero en esa silla, se entregará un caramelo a cada prisionero secuencialmente alrededor de la mesa hasta que todos hayan sido distribuidos.
+    Se sacará un número de silla de un sombrero. Comenzando con el prisionero en esa silla, se entregará un caramelo a cada prisionero 
+    secuencialmente alrededor de la mesa hasta que todos hayan sido distribuidos.
     Sin embargo, el carcelero está jugando una "pequeña" broma. El último dulce se parece a todos los demás, pero tiene veneno.
     Determine el número de silla ocupado por el prisionero que recibirá ese caramelo.
     Desarrolle la funcion saveThePrisoner que devuelva el numero de prisionero que recibe la ultima golosina.
@@ -15,7 +16,15 @@
  * @return el numero de prisionero que recibe la ultima golosina
  */
 const saveThePrisoner = function(n,m,s){ 
-     
+   s = s - 1
+   while(m > 0) {
+      s++
+      m--
+      if(s === n && m > 0){
+         s = 0
+      }
+   }
+   return s
 }
 
 // TEST TDD

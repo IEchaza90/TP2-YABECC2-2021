@@ -25,3 +25,27 @@ const str = `<ul>
 // Tip: Obtener un array de objetos, donde cada objeto sea un video
 // {min:5, seg: 59, tipo: 'Redux Video'}
 
+//Visto en Clase
+
+function getVideos(str) {
+  return str
+    .replace('<ul>','')
+    .replace('</ul>','')
+    .split('</li>')
+    .slice(0,-1)
+    .map(videos => ({
+      min: parseInt(videos.split('"')[1].split(':')[0]),
+      seg: parseInt(videos.split('"')[1].split(':')[1]),
+      tipo: videos.split('>')[1]
+    }))
+}
+
+function getTotalSegundos(videos, tipo) {
+  return videos
+    .filter(video => video.tipo === tipo)
+    .reduce((total, video) => total + video.min * 60 + video.seg,0)
+}
+
+console.log(getVideos(str))
+console.log(getTotalSegundos(getVideos(str), 'Redux Video'))
+

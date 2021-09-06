@@ -11,11 +11,19 @@
  * @return {Number} 
  */
 const sockMerchant = function(colorSocks){
-   
+   colorSocks.sort()
+   let pares = 0
+   for (let i = 0; i < colorSocks.length-1; i++) {
+       if(colorSocks[i] === colorSocks[i+1]) {
+        pares++
+        i++
+       }
+   }  
+   return pares
 }
 
 // TESTS TDD
-console.log(sockMerchant([1,2,1,2,1,3,2]) === 2);
-console.log(sockMerchant([10,20,20,10,10,30,50,10,20]) === 3);
-//console.log(sockMerchant([10,20,20,10,10,30,50,10,20,20])
+console.log(sockMerchant([1,2,1,2,1,3,2]) === 2)
+console.log(sockMerchant([10,20,20,10,10,30,50,10,20]) === 3)
+console.log(sockMerchant([10,20,20,10,10,30,50,10,20,20]) === 4)
 
